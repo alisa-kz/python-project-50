@@ -49,6 +49,3 @@ def format(tree):
         lines.append(line)
     result = itertools.chain("{", lines, "}")
     return "\n".join(result)
-
-
-print(generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json"))

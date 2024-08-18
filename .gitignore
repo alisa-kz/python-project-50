@@ -2,3 +2,6 @@
 __pycache__
 .venv
 dist/
+.coverage
+coverage.xml
+diff_json.cast
