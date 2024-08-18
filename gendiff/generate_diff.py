@@ -25,7 +25,11 @@ def build_diff(dict1, dict2):
         elif dict1[key] == dict2[key]:
             diff[key] = {"type": "unchanged", "value": dict1[key]}
         else:
-            diff[key] = {"type": "changed", "old_value": dict1[key], "new_value": dict2[key]}
+            diff[key] = {
+                "type": "changed",
+                "old_value": dict1[key],
+                "new_value": dict2[key]
+            }
     return diff
 
 
@@ -45,5 +49,6 @@ def format(tree):
         lines.append(line)
     result = itertools.chain("{", lines, "}")
     return "\n".join(result)
+
 
 print(generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json"))
