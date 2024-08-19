@@ -1,5 +1,5 @@
-import json
 import itertools
+from gendiff.parser import read_file
 
 
 def generate_diff(file1, file2):
@@ -7,11 +7,6 @@ def generate_diff(file1, file2):
     data2 = read_file(file2)
     diff = build_diff(data1, data2)
     return format(diff)
-
-
-def read_file(path):
-    data = json.load(open(path))
-    return data
 
 
 def build_diff(dict1, dict2):

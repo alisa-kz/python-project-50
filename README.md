@@ -8,3 +8,5 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/04cf893d3734993ced87/test_coverage)](https://codeclimate.com/github/alisa-kz/python-project-50/test_coverage)
 
 [![asciicast](https://asciinema.org/a/KJmMatAvCx5oGV7miHRPlFoQr.svg)](https://asciinema.org/a/KJmMatAvCx5oGV7miHRPlFoQr)
+
+[![asciicast](https://asciinema.org/a/KfCbWb38poCk9Ly7Ab7WoX8YA.svg)](https://asciinema.org/a/KfCbWb38poCk9Ly7Ab7WoX8YA)
