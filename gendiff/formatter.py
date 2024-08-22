@@ -1,37 +1,45 @@
 import itertools
 
 
-def format(tree):
-    lines = []
-    for key, dict_value in tree.items():
-        if dict_value["type"] == "deleted":
-            line = (f"  - {key}: {str(dict_value["value"]).lower()}")
-        elif dict_value["type"] == "added":
-            line = (f"  + {key}: {str(dict_value["value"]).lower()}")
-        elif dict_value["type"] == "unchanged":
-            line = (f"    {key}: {str(dict_value["value"]).lower()}")
-        else:
-            line1 = (f"  - {key}: {str(dict_value["old_value"]).lower()}")
-            line2 = (f"  + {key}: {str(dict_value["value"]).lower()}")
-            line = line1 + "\n" + line2
-        lines.append(line)
-    result = itertools.chain("{", lines, "}")
-    return "\n".join(result)
-
-
-def stylish(value, replacer=" ", spaces_count=4):
-
-    def iter_(current_value, depth=0):
-        deep_indent_size = depth + spaces_count
-        deep_indent = replacer * deep_indent_size
-        current_indent = replacer * depth
+def to_str(value, depth, indent='    '):
+    if isinstance(value, bool):
+        return str(value).lower()
+    if value is None:
+        return 'null'
+    if isinstance(value, dict):
         lines = []
-        if not isinstance(current_value, dict):
-            return str(current_value)
-        if 'type' in current_value.keys():
-            return iter_(current_value.get('value'), deep_indent_size - spaces_count)
-        for key, val in current_value.items():
-            lines.append(f"{deep_indent[:-2]}  {key}: {iter_(val, deep_indent_size)}")
-        result = itertools.chain("{", lines, [current_indent + "}"])
+        for key, val in value.items():
+            lines.append(f'{indent * depth + indent[:-2]}  '
+                         f'{key}: {to_str(val, depth + 1)}')
+        result = itertools.chain("{", lines, [indent * depth + "}"])
         return "\n".join(result)
-    return iter_(value)
+    return str(value)
+
+
+def stylish(tree, indent='    '):
+    def iter_(tree, depth=0):
+        lines = []
+        for key, value in tree.items():
+            match value["type"]:
+                case "nested":
+                    line = (f"{indent * depth + indent[:-2]}  {key}: "
+                            f"{iter_(value.get("value"), depth + 1)}")
+                case "deleted":
+                    line = (f"{indent * depth + indent[:-2]}- {key}: "
+                            f"{to_str(value.get("value"), depth + 1)}")
+                case "added":
+                    line = (f"{indent * depth + indent[:-2]}+ {key}: "
+                            f"{to_str(value.get("value"), depth + 1)}")
+                case "unchanged":
+                    line = (f"{indent * depth + indent[:-2]}  {key}: "
+                            f"{to_str(value.get("value"), depth + 1)}")
+                case "changed":
+                    line1 = (f"{indent * depth + indent[:-2]}- {key}: "
+                             f"{to_str(value.get("old_value"), depth + 1)}")
+                    line2 = (f"{indent * depth + indent[:-2]}+ {key}: "
+                             f"{to_str(value.get("new_value"), depth + 1)}")
+                    line = line1 + "\n" + line2
+            lines.append(line)
+        result = itertools.chain("{", lines, [indent * depth + "}"])
+        return "\n".join(result)
+    return iter_(tree)

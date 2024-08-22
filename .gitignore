@@ -6,3 +6,4 @@ dist/
 coverage.xml
 diff_json.cast
 diff_yaml.cast
+diff_stylish.cast

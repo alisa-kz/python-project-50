@@ -10,7 +10,9 @@ def build_diff(dict1, dict2):
             diff[key] = {"type": "unchanged", "value": dict1[key]}
         else:
             if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-                diff[key] = build_diff(dict1[key], dict2[key])
+                diff[key] = {"type": "nested",
+                             "value": build_diff(dict1[key], dict2[key])
+                             }
             else:
                 diff[key] = {
                     "type": "changed",
