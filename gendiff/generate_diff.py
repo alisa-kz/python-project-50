@@ -1,10 +1,14 @@
 from gendiff.parser import read_file
-from gendiff.formatter import stylish
+from gendiff.formatters import stylish, plain
 from gendiff.builder import build_diff
 
 
-def generate_diff(file1, file2, format=stylish):
+def generate_diff(file1, file2, format='stylish'):
+    if format == 'stylish':
+        to_format = stylish.to_stylish
+    elif format == 'plain':
+        to_format = plain.to_plain
     data1 = read_file(file1)
     data2 = read_file(file2)
     diff = build_diff(data1, data2)
-    return format(diff)
+    return to_format(diff)

@@ -16,7 +16,7 @@ def to_str(value, depth, indent='    '):
     return str(value)
 
 
-def stylish(tree, indent='    '):
+def to_stylish(tree, indent='    '):
     def iter_(tree, depth=0):
         lines = []
         for key, value in tree.items():
