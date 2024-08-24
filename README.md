@@ -1,3 +1,10 @@
+A difference calculator is a program that determines the differences between two data structures.
+
+Utility features:
+
+    Supports different input formats: yaml, json
+    Generating a report in the form of plain text, stylish and json
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/alisa-kz/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/alisa-kz/python-project-50/actions)
 
@@ -6,6 +13,8 @@
 [![Python CI](https://github.com/alisa-kz/python-project-50/actions/workflows/pyci.yml/badge.svg)](https://github.com/alisa-kz/python-project-50/actions/workflows/pyci.yml)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/04cf893d3734993ced87/test_coverage)](https://codeclimate.com/github/alisa-kz/python-project-50/test_coverage)
+
+Examples:
 
 [![asciicast](https://asciinema.org/a/KJmMatAvCx5oGV7miHRPlFoQr.svg)](https://asciinema.org/a/KJmMatAvCx5oGV7miHRPlFoQr)
 

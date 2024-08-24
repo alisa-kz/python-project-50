@@ -7,6 +7,8 @@ def to_str(value, depth=0):
         return '[complex value]'
     if value == '':
         return "''"
+    if isinstance(value, int):
+        return value
     return f"'{str(value)}'"
 
 
