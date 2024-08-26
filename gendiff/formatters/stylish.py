@@ -1,7 +1,8 @@
 import itertools
 
 
-def to_str(value, depth, indent='    '):
+def to_str(value, depth, replacer=' ', space_count=4):
+    indent = replacer * space_count
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -16,8 +17,9 @@ def to_str(value, depth, indent='    '):
     return str(value)
 
 
-def to_stylish(tree, indent='    '):
+def to_stylish(tree, replacer=' ', space_count=4):
     def iter_(tree, depth=0):
+        indent = replacer * space_count
         lines = []
         for key, value in tree.items():
             match value["type"]:
