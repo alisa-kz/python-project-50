@@ -2,6 +2,15 @@ import itertools
 
 
 def to_str(value, depth, replacer=' ', space_count=4):
+    """
+    Converts value to string.
+
+    Arguments:
+    value (bool, int, list, dict): Value to convert
+    depth (int): Depth
+    replacer (str): Symbol to replace (default ' ')
+    space_count (int): Replacers count (default 4)
+    """
     indent = replacer * space_count
     if isinstance(value, bool):
         return str(value).lower()
@@ -18,6 +27,14 @@ def to_str(value, depth, replacer=' ', space_count=4):
 
 
 def to_stylish(tree, replacer=' ', space_count=4):
+    """
+    Implements "stylish" formatting.
+
+    Arguments:
+    tree (dict): The diff dictionary
+    replacer (str): Symbol to replace (default ' ')
+    space_count (int): Replacers count (default 4)
+    """
     def iter_(tree, depth=0):
         indent = replacer * space_count
         lines = []

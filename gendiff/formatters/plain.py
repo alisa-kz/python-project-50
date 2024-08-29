@@ -1,4 +1,10 @@
-def to_str(value, depth=0):
+def to_str(value):
+    """
+    Converts value to string.
+
+    Arguments:
+    value (bool, int, list, dict): Value to convert
+    """
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -13,6 +19,12 @@ def to_str(value, depth=0):
 
 
 def to_plain(tree):
+    """
+    Implements "plain" formatting.
+
+    Arguments:
+    tree (dict): The diff dictionary
+    """
     def iter_(tree, ancerity=''):
         lines = []
         for key, value in tree.items():

@@ -1,4 +1,11 @@
 def build_diff(dict1, dict2):
+    """
+    Compares two dictionaries. Returns a diff dictionary describing the changes.
+
+    Arguments:
+        dict1 (dict): The first dictionary to compare.
+        dict2 (dict): The second dictionary to compare.
+    """
     keys = sorted(dict1.keys() | dict2.keys())
     diff = {}
     for key in keys:
