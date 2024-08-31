@@ -61,21 +61,19 @@ def test_generate_diff(file1, file2, expected, format):
     assert generate_diff(file1, file2, format) == result_data
 
 
-@pytest.mark.parametrize(
-    "file1, file2, format",
-    [
-        (
-            "tests/fixtures/file1.txt",
-            "tests/fixtures/file2.txt",
-            "stylish",
-        ),
-        (
-            "tests/fixtures/file1.json",
-            "tests/fixtures/file2.json",
-            "another",
-        ),
-    ],
-)
-def test_invalid_format(file1, file2, format):
-    with pytest.raises(ValueError):
-        generate_diff(file1, file2, format)
+def test_invalid_extension():
+    file1 = "tests/fixtures/file1.txt"
+    file2 = "tests/fixtures/file2.txt"
+    with pytest.raises(
+        ValueError, match='Invalid extension "txt".' " Use json, yaml, yml"
+    ):
+        generate_diff(file1, file2)
+
+
+def test_invalid_format():
+    file1 = "tests/fixtures/file1.json"
+    file2 = "tests/fixtures/file2.json"
+    with pytest.raises(
+        ValueError, match='Invalid format "another". Use stylish, plain, json'
+    ):
+        generate_diff(file1, file2, "another")
